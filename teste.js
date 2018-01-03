@@ -12,3 +12,12 @@ function removeElement(elementId) {
     var element = document.getElementById(elementId);
     element.parentNode.removeChild(element);
 }
+
+
+var cardId = 0; // keep track of IDs
+function addNewCard() {
+    cardId++; 
+    var html = '<input type="number" name="uploaded_files[]" /> ' +
+               '<a href="" onclick="javascript:removeElement('number-' + fileId + ''); return false;">Remove</a>';
+    addElement('number', 'p', 'number-' + cardId, html);
+}
