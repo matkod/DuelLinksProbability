@@ -39,9 +39,10 @@ Having trouble with Pages? Check out our [documentation](https://help.github.com
 
 
 
-<form>
-  First name:<br>
-  <input type="text" name="firstname"><br>
-  Last name:<br>
-  <input type="text" name="lastname">
+<form enctype="multipart/form-data" action="" method="post">
+    <p>Upload file(s)</p>
+    <div id="number">
+        <p><input type="file" name="uploaded_file[]" /></p>
+    </div>
+    <p><input type="button" value="Add File" onclick="addFile();" /></p>
 </form>
