@@ -39,7 +39,7 @@ Having trouble with Pages? Check out our [documentation](https://help.github.com
 
 
 
-form>
+<form>
   First name:<br>
   <input type="text" name="firstname"><br>
   Last name:<br>
