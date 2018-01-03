@@ -20,5 +20,5 @@
 
 <script src="teste.js"></script>
 
-</body>
+</div></body>
 </html>
