@@ -21,3 +21,11 @@ function addNewCard() {
                '<a href="" onclick="javascript:removeElement('number-' + fileId + ''); return false;">Remove</a>';
     addElement('number', 'p', 'number-' + cardId, html);
 }
+
+var fileId = 0; // used by the addFile() function to keep track of IDs
+function addFile() {
+    fileId++; // increment fileId to get a unique ID for the new element
+    var html = '<input type="file" name="uploaded_files[]" /> ' +
+               '<a href="" onclick="javascript:removeElement('file-' + fileId + ''); return false;">Remove</a>';
+    addElement('files', 'p', 'file-' + fileId, html);
+}
