@@ -29,3 +29,7 @@ function addFile() {
                '<a href="" onclick="javascript:removeElement('file-' + fileId + ''); return false;">Remove</a>';
     addElement('files', 'p', 'file-' + fileId, html);
 }
+
+
+let d = new Date();
+document.body.innerHTML = "<h1>Today's date is " + d + "</h1>"
