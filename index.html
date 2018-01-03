@@ -11,16 +11,24 @@
 	
 <body><div class="wrapper">
 
-<form enctype="multipart/form-data" action="" method="post">
-    <p>Upload file(s)</p>
-    <div id="files">
-        <p><input type="file" name="uploaded_file[]" /></p>
-    </div>
-    <p><input type="button" value="Add File" onclick="addFile();" /></p>
+<div class="core">
+<h1><a style="color: #EEEEEE; text-decoration: none;" href="http://google.com">Duel Links Starting Hand Combo Calculator</a></h1>
+		<h3>Calculate the probability of getting at least 1 of each card needed for your combo in your opening hand. </h3>
+		<hr>
+		
+<div class="form">
+<form method="POST">
+<p>Quantity of each card needed in the starting hand in the deck:</p>
+     <div id="dynamicInput">
+          Combo Card 1 <input type="number" name="myInputs[]" min="1" max="30">
+     </div>
+     <input type="button" value="Add another card" onClick="addInput('dynamicInput');">
 </form>
+</div>
+</div>
+
+<script src="oi.js"></script>
 
 </div></body>
-
-<script src="teste.js" type="text/javascript"></script>
 	
 </html>
