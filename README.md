@@ -44,7 +44,7 @@ Having trouble with Pages? Check out our [documentation](https://help.github.com
     <div id="number">
         <p><input type="file" name="uploaded_file[]" /></p>
     </div>
-    <p><input type="button" value="Add File" onclick="addNewCard();" /></p>
+    <p><input type="button" value="Add File!!!!" onclick="addNewCard();" /></p>
 </form>
 
 <script src="teste.js"></script>
