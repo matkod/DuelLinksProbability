@@ -6,7 +6,7 @@ function addInput(divName){
      }
      else {
           var newdiv = document.createElement('div');
-          newdiv.innerHTML = "Combo Card " + (counter + 1) + " <input type='number' name='myInputs[]' min='1' max='30'>";
+          newdiv.innerHTML = "Combo Card " + (counter + 1) + " <input type='number' name='myInputs[]' min='1' max='30' style='width: 3em'>";
           document.getElementById(divName).appendChild(newdiv);
           counter++;
      }
@@ -17,6 +17,158 @@ function factorial(n) {
 	return f[n];
 }
 
+function binomial(x, y) {
+	try {
+		binom = factorial(x) / factorial(y) / factorial(x - y);
+	}
+	catch(err) {
+		binom = 0;
+	}
+	return binom;
+}
+
+function hypergeometric(cards, hand_size, deck_size) {
+	p = 1;
+    hand_needed = 0;
+    total_needed = 0;
+    
+    for (i in cards) {
+		if (cards[i][1] > 0) { // se a carta n for necessaria nao entra na conta
+			if (cards[i][1] > cards[i][0]) {
+				return 0;
+			}
+			
+			p *= binomial(cards[i][0], cards[i][1]);
+			hand_needed += cards[i][1];
+			total_needed += cards[i][0];
+		}
+	}
+        
+    if (hand_needed > hand_size) {
+        alert("Error, needs more cards than you have in the starting hand!")
+        return 0
+	}
+    if (total_needed > deck_size) {
+        alert("Error, needs more cards than you have in the deck!")
+        return 0
+    }
+	
+    p *= binomial(deck_size - total_needed, hand_size - hand_needed)
+    p /= binomial(deck_size, hand_size)
+
+    return p
+}
+
+function combinations(str) {
+    var fn = function(active, rest, a) {
+        if (!active && !rest)
+            return;
+        if (!rest) {
+            a.push(active);
+        } else {
+            fn(active + rest[0], rest.slice(1), a);
+            fn(active, rest.slice(1), a);
+        }
+        return a;
+    }
+    return fn("", str, []);
+}
+
+function create_combinations(n, hand) {
+	combinations = [];
+	possibilities = [];
+	for(i=0;i<n;++i) {
+		for(j=0;j<hand;++j) {
+			possibilities.push(j+1);
+		}
+	}
+	console.log(possibilities)
+	
+	var combine = function(a, min) {
+    var fn = function(n, src, got, all) {
+        if (n == 0) {
+            if (got.length > 0) {
+                all[all.length] = got;
+            }
+            return;
+        }
+        for (var j = 0; j < src.length; j++) {
+            fn(n - 1, src.slice(j + 1), got.concat([src[j]]), all);
+        }
+        return;
+    }
+    var all = [];
+    for (var i = min; i < a.length; i++) {
+        fn(i, a, [], all);
+    }
+    all.push(a);
+	return all;
+    }
+	
+	x = combine(possibilities, n)
+	
+	for (i in x) {
+		if (x[i].length == n) {
+			y = 0;
+			for(j in x[i]) {
+				y += x[i][j];
+			}
+			if (y <= hand) {
+				h = combinations.findIndex(unique, x[i]);
+				if (h === -1) {
+					combinations.push(x[i]);
+				}
+			}
+		}
+	}
+  
+  
+  return combinations;
+}
+
+function unique(currentValue) {
+	for(k in this) {
+		if (currentValue[k] != this[k]) {
+			return false;
+		}
+			
+	}
+	
+	return true;
+}
+
+
 function calculate() {
-	document.getElementById("result").textContent = factorial(5);
+	deck_size = document.getElementById("deck_size").value;
+	hand_size = document.getElementById("hand_size").value;
+	cards_elements = document.getElementsByName("myInputs[]");
+	cards = [];
+	console.log(cards_elements)
+	for (i=0;i<cards_elements.length; ++i) {
+		cards.push(parseFloat(cards_elements[i].value));
+	}
+	console.log(cards)
+	n = binomial(hand_size, cards.length);
+	combinations = create_combinations(cards.length, hand_size);
+	p = 0;
+	console.log(n);
+	console.log(combinations);
+	for (k in combinations) {
+		c = [];
+		for (j in cards) {
+			c.push([cards[j], combinations[k][j]]);
+		}
+		console.log(c)
+		
+		p += hypergeometric(c, hand_size, deck_size);
+		console.log(p)
+	}
+	console.log(document.getElementById("restart").checked)
+	if ( document.getElementById("restart").checked == true) {
+		p = 1 - ((1 - p) * (1 - p));
+	}
+	
+	console.log(p);
+	
+	document.getElementById("result").textContent = parseFloat(p*100).toFixed(2) + "%";
 }

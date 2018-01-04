@@ -5,30 +5,66 @@
 	<meta charset="utf-8"/>
 	<title>Duel Links Probability Calculator</title>
 	<meta name="description" content="Probability Calculator." />
-	<link rel="stylesheet" type="text/css" href="poestyle.min.css"/>
-	<link rel="icon" type="image/png" href="Chromatic_Orb.png"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+	<!-- <link rel="stylesheet" href="assets/css/main.css" /> -->
+	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 </head>
 	
-<body><div class="wrapper">
+<body>
+	<div id="wrapper">
 
-<div class="core">
-<h1><a style="color: #EEEEEE; text-decoration: none;" href="http://google.com">Duel Links Starting Hand Combo Calculator</a></h1>
-		<h3>Calculate the probability of getting at least 1 of each card needed for your combo in your opening hand. </h3>
-		<hr>
+		<!-- Header -->
+		<header id="header">
+			<h1><a style="text-decoration: none;" href="http://google.com">Duel Links Starting Hand Combo Calculator</a></h1>
+			<p>Calculate the probability of getting at least 1 of each card needed for your combo in your opening hand.</p>
+		</header>
+	
+		<div id="main">
+			<section id="content" class="main">
+				<section>
+					<div>
+						<form method="POST">
+							<div id="Info">
+								<h3>Information about the deck and hand size:</h3>
+							
+								Deck Size <input type="number" id="deck_size" name="deck_size" value="20" min="20" max="30" style="width: 3em">
+								Hand Size <input type="number" id="hand_size" name="hand_size" value="4" min="2" max="6" style="width: 3em">
+								<input type="checkbox" id="restart" name="restart" >
+								<label for="restart">Restart?</label>
+							</div>
+							
+							<h3>Quantity of each card needed in the starting hand in the deck:</h3>
+							
+							<div id="dynamicInput"> 
+								Combo Card 1 <input type="number" name="myInputs[]" min="1" max="30" style="width: 3em">
+							</div>
+							
+							<br>
+							<input type="button" value="Add another card" onClick="addInput('dynamicInput');">
+							<br><br>
+							<input type="button" value="Calculate" onClick="calculate();">
+							<br>
+							<h2><div id="result"></div><h2>
+						</form>
+					</div>
+				</section>
+			</section>
+		</div>
 		
-<div class="form">
-<form method="POST">
-<p>Quantity of each card needed in the starting hand in the deck:</p>
-     <div id="dynamicInput">
-          Combo Card 1 <input type="number" name="myInputs[]" min="1" max="30">
-     </div>
-     <input type="button" value="Add another card" onClick="addInput('dynamicInput');">
-</form>
-</div>
-</div>
-
-<script src="oi.js"></script>
-
-</div></body>
+		<!-- Footer -->
+		<footer id="footer">
+			<p class="copyright">&copy; Made by Matkod. Last update Jan 2018. Design: <a href="https://html5up.net">HTML5 UP</a>.
+			<br> CC0 2018</p>
+		</footer>
+						
+	</div>
+	
+	<!-- Scripts -->
+	
+	<script src="myScript.js"></script>
+	
+</body>
 	
 </html>
