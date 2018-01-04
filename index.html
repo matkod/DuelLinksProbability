@@ -4,61 +4,101 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Duel Links Probability Calculator</title>
-	<meta name="description" content="Probability Calculator." />
+	<meta name="description" content="Probability Calculator For Yu-Gi-Oh Duel Links." />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
-	<!-- <link rel="stylesheet" href="assets/css/main.css" /> -->
-	<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-	<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+	
+	<link rel="stylesheet" href="assets/css/main.css" />
+	
 </head>
 	
 <body>
 	<div id="wrapper">
-
-		<!-- Header -->
-		<header id="header">
-			<h1><a style="text-decoration: none;" href="http://google.com">Duel Links Starting Hand Combo Calculator</a></h1>
-			<p>Calculate the probability of getting at least 1 of each card needed for your combo in your opening hand.</p>
-		</header>
-	
 		<div id="main">
-			<section id="content" class="main">
-				<section>
-					<div>
-						<form method="POST">
-							<div id="Info">
-								<h3>Information about the deck and hand size:</h3>
-							
-								Deck Size <input type="number" id="deck_size" name="deck_size" value="20" min="20" max="30" style="width: 3em">
-								Hand Size <input type="number" id="hand_size" name="hand_size" value="4" min="2" max="6" style="width: 3em">
-								<input type="checkbox" id="restart" name="restart" >
-								<label for="restart">Restart?</label>
-							</div>
-							
-							<h3>Quantity of each card needed in the starting hand in the deck:</h3>
-							
-							<div id="dynamicInput"> 
-								Combo Card 1 <input type="number" name="myInputs[]" min="1" max="30" style="width: 3em">
-							</div>
-							
-							<br>
-							<input type="button" value="Add another card" onClick="addInput('dynamicInput');">
-							<br><br>
-							<input type="button" value="Calculate" onClick="calculate();">
-							<br>
-							<h2><div id="result"></div><h2>
-						</form>
-					</div>
+			<div class="inner">
+				<!-- Header -->
+				<header id="header">
+				<div>
+					<h1><a style="text-decoration: none;" href="index.html" class="logo"><strong>Duel Links Starting Hand Combo Calculator</strong></a> </h1>
+					<br>
+					<p>Calculate the probability of getting at least 1 of each card needed for your combo in your opening hand.</p>
+				</div>
+				</header>
+		
+				
+				<section id="content" class="main">
+					<section>
+							<form method="POST">
+								<div id="Info">
+									<h3>Information about the deck and hand size:</h3>
+								
+									Deck Size <input type="number" id="deck_size" name="deck_size" value="20" min="19" max="30" style="width: 3em">
+									Hand Size <input type="number" id="hand_size" name="hand_size" value="4" min="2" max="6" style="width: 3em">
+									<input type="checkbox" id="restart" name="restart" >
+									<label for="restart">Restart?</label>
+								</div>
+								
+								<br>
+								<h3>Quantity of each card needed in the starting hand in the deck:</h3>
+								
+								<div id="dynamicInput"> 
+									<div id="Combo Card 1"> Combo Card 1 <input type="number" name="myInputs[]" min="1" max="30" style="width: 3em" required>
+									</div>
+								</div>
+								
+								<br>
+								<input type="button" value="Add another Card" onClick="addInput('dynamicInput');">
+								<input type="button" value="Remove Card" onClick="removeInput();">
+								<br><br><br>
+								<input type="button" value="Calculate" onClick="calculate();">
+								<br>
+								<h2><div id="result"></div><h2>
+							</form>
+					</section>
+					
+					<section>
+					<h3>Help</h3>
+					<p>Set you deck size and your hand size and if you have the skill restart. After that you need to select how many card you have in your deck that you want at least one in your starting hand.
+					<br>
+					Exemple:
+					<br><br>
+					Lets say you have this Phoenix deck:
+					<div class="4u"><span class="image fit"><img src="images/phoenix_deck.jpg" alt="" /></span></div>
+					You need your starting hand to have a <strong>Phoenix</strong> (or a way to get one) and a card to send it to the graveyard. This means that you can have either a <strong>Phoenix</strong> or a <strong>Card of the Soul</strong> and a <strong>Fire King Island</strong> 
+					or a <strong>Fire King Avatar Yaksha</strong>. So you have 6 Cards that can get a <strong>Phoenix</strong> in your hand and 6 Cards to get it to the graveyard.
+					<br><br>
+					1. Set you <strong>Deck Size</strong> to 20 and <strong>Hand Size</strong> to 4.
+					<br>
+					2. Set your Combo Card 1 to 6 (thats how many cards acts like a <strong>Phoenix</strong>).
+					<br>
+					3. Click the button to add another card.
+					<br>
+					4. Set your Combo Card 2 to 6 (thats how many cards can send your <strong>Phoenix</strong> to the graveyard).
+					<br>
+					5. Click Calculate.
+					<br><br>
+					It will show that you have 60.12% chance to get at least one <strong>Phoenix</strong> and one way to send it to the graveyard.
+					<br><br>
+					You can also check you chances with <strong>Restart Skill</strong> by clicking the <strong>Restart?</strong> checkbox.
+					<br>
+					To compare with <strong>Duel, stand by Skill</strong> you can change your Hand Size to 5.
+					<br>
+					Restart: 84.10%
+					<br>
+					Duel, stand by: 74.54%
+					</p>
+					</section>
 				</section>
-			</section>
+			
+				<!-- Footer -->
+				<footer id="footer">
+					<p class="copyright">&copy; Made by Matkod. Last update Jan 2018. Design: <a href="https://html5up.net">HTML5 UP</a>.
+					<br> CC0 2018</p>
+				</footer>
+					
+			</div>
 		</div>
 		
-		<!-- Footer -->
-		<footer id="footer">
-			<p class="copyright">&copy; Made by Matkod. Last update Jan 2018. Design: <a href="https://html5up.net">HTML5 UP</a>.
-			<br> CC0 2018</p>
-		</footer>
-						
+			
 	</div>
 	
 	<!-- Scripts -->
